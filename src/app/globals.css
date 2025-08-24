@@ -5,13 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -22,5 +15,348 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% { transform: translateY(0px) rotate(12deg); }
+  50% { transform: translateY(-15px) rotate(7deg); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 6rem;
+  }
+}
+
+@keyframes fill-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--target-width, 100%);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: float-slow-reverse 10s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 25s linear infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 1s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 1s ease-out forwards;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.8s ease-out forwards;
+}
+
+.animate-expand {
+  animation: expand 1.5s ease-out forwards;
+}
+
+.animate-progress {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fill-bar {
+  animation: fill-bar 2s ease-out forwards;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Animation Delays */
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-1500 {
+  animation-delay: 1.5s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Performance Optimizations */
+.parallax-element {
+  will-change: transform;
+}
+
+/* Flip Card Styles */
+.flip-card-container {
+  perspective: 1000px;
+  height: 400px;
+  width: 100%;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-card-container.flipped .flip-card {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Scrollable Content Styles */
+.flip-card-front .text-center,
+.flip-card-back .h-full {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+}
+
+/* Webkit scrollbar styles */
+.flip-card-front .text-center::-webkit-scrollbar,
+.flip-card-back .h-full::-webkit-scrollbar {
+  width: 6px;
+}
+
+.flip-card-front .text-center::-webkit-scrollbar-track,
+.flip-card-back .h-full::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.flip-card-front .text-center::-webkit-scrollbar-thumb,
+.flip-card-back .h-full::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+}
+
+.flip-card-front .text-center::-webkit-scrollbar-thumb:hover,
+.flip-card-back .h-full::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Dark mode scrollbar */
+.dark .flip-card-front .text-center::-webkit-scrollbar-thumb,
+.dark .flip-card-back .h-full::-webkit-scrollbar-thumb {
+  background: rgba(147, 197, 253, 0.3);
+}
+
+.dark .flip-card-front .text-center::-webkit-scrollbar-thumb:hover,
+.dark .flip-card-back .h-full::-webkit-scrollbar-thumb:hover {
+  background: rgba(147, 197, 253, 0.5);
+}
+
+/* Smooth scrolling */
+.flip-card-front .text-center,
+.flip-card-back .h-full {
+  scroll-behavior: smooth;
+}
+
+/* Resume Content Styles */
+.resume-content h1 {
+  @apply text-3xl font-bold text-slate-900 dark:text-white mb-6 pb-2 border-b-2 border-blue-600;
+}
+
+.resume-content h2 {
+  @apply text-2xl font-semibold text-slate-800 dark:text-slate-200 mt-8 mb-4;
+}
+
+.resume-content h3 {
+  @apply text-xl font-semibold text-slate-700 dark:text-slate-300 mt-6 mb-3;
+}
+
+.resume-content h4 {
+  @apply text-lg font-semibold text-slate-600 dark:text-slate-400 mt-4 mb-2;
+}
+
+.resume-content p {
+  @apply text-slate-600 dark:text-slate-300 leading-relaxed mb-4;
+}
+
+.resume-content ul {
+  @apply space-y-2 mb-4;
+}
+
+.resume-content li {
+  @apply text-slate-600 dark:text-slate-300;
+}
+
+.resume-content strong {
+  @apply font-semibold text-slate-800 dark:text-slate-200;
+}
+
+.resume-content a {
+  @apply text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline;
+}
+
+.resume-content hr {
+  @apply border-slate-200 dark:border-slate-700 my-6;
+}
+
+/* Experience section styling */
+.resume-content h3 + p {
+  @apply text-slate-500 dark:text-slate-400 italic mb-3;
+}
+
+.resume-content h4 + ul {
+  @apply mt-2;
+}
+
+.resume-content h4 + p {
+  @apply mt-2 text-sm;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .flip-card {
+    transition: none !important;
+  }
+  
+  .flip-card-container.flipped .flip-card {
+    transform: rotateY(180deg) !important;
+  }
 }

@@ -6,10 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "parse-resume": "node scripts/parse-resume.js"
   },
   "dependencies": {
+    "marked": "^16.2.0",
     "next": "15.5.0",
+    "puppeteer": "^24.17.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

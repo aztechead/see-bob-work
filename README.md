@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aztechead's Outie Portfolio - seebobwork
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features a markdown-based resume system for easy content management.
 
-First, run the development server:
 
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Setup
 ```bash
+# Clone the repository
+git clone <your-repo>
+cd see-bob-work
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Content Management
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### 1. Update Your Resume
+Edit `src/data/resume.md` - this is your single source of truth:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```markdown
+# Random Person - Enterprise Software Engineer
 
-## Learn More
+## Contact
+- **Email**: bob@seebobwork.com
+- **Location**: Somewhere, Universe
 
-To learn more about Next.js, take a look at the following resources:
+## Experience
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Senior Software Engineer
+**Company Name** | 2022 - Present
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Description of your role...
 
-## Deploy on Vercel
+#### Key Achievements
+- Achievement 1
+- Achievement 2
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Technologies
+React, Node.js, AWS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Impact
+Quantified impact of your work...
+```
+
+#### 2. Generate Data Files
+After updating `resume.md`, run the parser:
+
+```bash
+npm run parse-resume
+```
+
+This automatically generates:
+- `src/data/experience.ts` - Work experience data
+- `src/data/skills.ts` - Skills and proficiency levels  
+- `src/data/contact.ts` - Contact information
+
+#### 3. View Changes
+The website automatically uses the generated data files, so your changes appear immediately.
+
+## 🎨 Customization
+
+### Styling
+- **Colors**: Modify Tailwind classes in components
+- **Animations**: Edit `src/app/globals.css` for custom animations
+- **Layout**: Update component structure in `src/app/page.tsx`
+
+### Content
+- **Site Config**: Edit `src/data/site.ts` for site-wide settings
+- **Resume**: Edit `src/data/resume.md` for all content
+- **Assets**: Replace `public/pixel-desk.png` with your own images
+
+## 📄 Resume System
+
+### Markdown Format
+The resume parser expects this structure:
+
+```markdown
+### Job Title
+**Company** | Period
+
+Summary description...
+
+#### Key Achievements
+- Achievement 1
+- Achievement 2
+
+#### Technologies
+Tech1, Tech2, Tech3
+
+#### Impact
+Quantified impact statement...
+```
+
+### Skills Format
+```markdown
+- **Skill Name**: 85%
+```
+
+### Contact Format
+```markdown
+- **Email**: your@email.com
+- **Location**: City, State
+- **LinkedIn**: [linkedin.com/in/username](url)
+- **GitHub**: [github.com/username](url)
+```
+
+## 📄 License
+
+MIT License - feel free to use this template for your own portfolio!
