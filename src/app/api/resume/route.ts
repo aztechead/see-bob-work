@@ -10,7 +10,7 @@ const resumeContent = `# Christopher Bobrowitz - Enterprise Technical Leader
 - **Email**: chris.bobrowitz@gmail.com
 - **Location**: Remote, Planet Earth
 - **LinkedIn**: [https://www.linkedin.com/in/christopherbobrowitz/](https://www.linkedin.com/in/christopherbobrowitz/)
-- **GitHub**: [https://github.com/aztechead/see-bob-work](https://github.com/aztechead/see-bob-work)
+- **GitHub**: [https://github.com/aztechead/](https://github.com/aztechead/)
 
 ## Summary
 Enterprise technical leader with robust problem solving skills, exceptional leadership traits, with proven experience. Industry experience in airlines, automotive supply chains, and satellite networks. 
@@ -80,7 +80,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 - Led migration of the pasenger service system and containerizes APIs on Amazon EKS.
 - Designed and launched HA's AWS booking engine generating ~\$1.3B annually.
 - Delivered for commit-to-production CI/CD pipeline with Python based testing suite
-- Createds AI driven user behavior models to power dynamic guest experience. 
+- Created AI driven user behavior models to power dynamic guest experience. 
 
 #### Technologies
 Python, Angular, AWS, EKS, AI/ML Models

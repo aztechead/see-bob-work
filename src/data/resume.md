@@ -74,7 +74,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 - Led migration of the pasenger service system and containerizes APIs on Amazon EKS.
 - Designed and launched HA's AWS booking engine generating ~$1.3B annually.
 - Delivered for commit-to-production CI/CD pipeline with Python based testing suite
-- Createds AI driven user behavior models to power dynamic guest experience. 
+- Created AI driven user behavior models to power dynamic guest experience. 
 
 #### Technologies
 Python, Angular, AWS, EKS, AI/ML Models

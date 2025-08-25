@@ -19,7 +19,7 @@ export const contactData: Contact = {
     },
     {
       "name": "GitHub",
-      "url": "https://github.com/aztechead/see-bob-work",
+      "url": "https://github.com/aztechead/",
       "icon": "github"
     }
   ]
