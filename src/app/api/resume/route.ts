@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Configure for Edge Runtime (required for Cloudflare Pages)
+export const runtime = 'edge';
+
 // Import resume content directly - this works in both environments
 const resumeContent = `# Christopher Bobrowitz - Enterprise Technical Leader
 
@@ -7,6 +10,7 @@ const resumeContent = `# Christopher Bobrowitz - Enterprise Technical Leader
 - **Email**: chris.bobrowitz@gmail.com
 - **Location**: Remote, Planet Earth
 - **LinkedIn**: [https://www.linkedin.com/in/christopherbobrowitz/](https://www.linkedin.com/in/christopherbobrowitz/)
+- **GitHub**: [https://github.com/aztechead/see-bob-work](https://github.com/aztechead/see-bob-work)
 
 ## Summary
 Enterprise technical leader with robust problem solving skills, exceptional leadership traits, with proven experience. Industry experience in airlines, automotive supply chains, and satellite networks. 
@@ -74,7 +78,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 #### Key Achievements
 - Directed technical strategy for HA's guest facing applications.
 - Led migration of the pasenger service system and containerizes APIs on Amazon EKS.
-- Designed and launched HA's AWS booking engine generating ~$1.3B annually.
+- Designed and launched HA's AWS booking engine generating ~\$1.3B annually.
 - Delivered for commit-to-production CI/CD pipeline with Python based testing suite
 - Createds AI driven user behavior models to power dynamic guest experience. 
 
@@ -82,7 +86,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 Python, Angular, AWS, EKS, AI/ML Models
 
 #### Impact
-Enabled ~$1.3B in annual revenue while modernizing Hawaiian Airlines digital platform through scalable cloud architectureand automation.
+Enabled ~\$1.3B in annual revenue while modernizing Hawaiian Airlines digital platform through scalable cloud architectureand automation.
 
 ---
 
@@ -136,7 +140,8 @@ Improved aftersales efficiency and decision making by modernizing applications a
 - **Architecture**: Microservices, REST APIs, CI/CD, Agile
 
 ## Education
-- **B.S.B.A Computer Information Systems** | Northern Arizona University | 2015`;
+- **B.S.B.A Computer Information Systems** | Northern Arizona University | 2015
+`;
 
 export async function GET() {
   try {

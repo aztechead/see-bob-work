@@ -138,8 +138,8 @@ function parseContact() {
   // Extract contact information
   const emailMatch = markdown.match(/\*\*Email\*\*: (.+)/);
   const locationMatch = markdown.match(/\*\*Location\*\*: (.+)/);
-  const linkedinMatch = markdown.match(/\[linkedin\.com\/in\/(.+?)\]\((.+?)\)/);
-  const githubMatch = markdown.match(/\[github\.com\/(.+?)\]\((.+?)\)/);
+  const linkedinMatch = markdown.match(/\[https:\/\/www\.linkedin\.com\/in\/(.+?)\]\((.+?)\)/);
+  const githubMatch = markdown.match(/\[https:\/\/github\.com\/(.+?)\]\((.+?)\)/);
   
   const contact = {
     email: emailMatch ? emailMatch[1].trim() : '',
@@ -182,6 +182,49 @@ export const contactData: Contact = ${JSON.stringify(contact, null, 2)};
   console.log(`📁 Output: ${outputPath}`);
 }
 
+// Update resume API route
+function updateResumeRoute() {
+  const resumePath = path.join(__dirname, '../src/data/resume.md');
+  const routePath = path.join(__dirname, '../src/app/api/resume/route.ts');
+  
+  const markdown = fs.readFileSync(resumePath, 'utf8');
+  
+  // Escape backticks and template literals for JavaScript string
+  const escapedContent = markdown
+    .replace(/`/g, '\\`')
+    .replace(/\$/g, '\\$');
+  
+  // Generate the route file content
+  const routeContent = `import { NextResponse } from 'next/server';
+
+// Configure for Edge Runtime (required for Cloudflare Pages)
+export const runtime = 'edge';
+
+// Import resume content directly - this works in both environments
+const resumeContent = \`${escapedContent}\`;
+
+export async function GET() {
+  try {
+    return new NextResponse(resumeContent, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+    });
+  } catch (error) {
+    console.error('Error serving resume:', error);
+    return NextResponse.json(
+      { error: 'Failed to load resume' },
+      { status: 500 }
+    );
+  }
+}
+`;
+
+  fs.writeFileSync(routePath, routeContent);
+  console.log(`✅ Resume API route updated from resume.md`);
+  console.log(`📁 Output: ${routePath}`);
+}
+
 // Run all parsers
 function main() {
   console.log('🔄 Parsing resume.md...\n');
@@ -190,6 +233,7 @@ function main() {
     parseResume();
     parseSkills();
     parseContact();
+    updateResumeRoute();
     
     console.log('\n✅ All data files generated successfully!');
     console.log('💡 Run this script whenever you update resume.md');

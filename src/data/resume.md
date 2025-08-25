@@ -4,6 +4,7 @@
 - **Email**: chris.bobrowitz@gmail.com
 - **Location**: Remote, Planet Earth
 - **LinkedIn**: [https://www.linkedin.com/in/christopherbobrowitz/](https://www.linkedin.com/in/christopherbobrowitz/)
+- **GitHub**: [https://github.com/aztechead/](https://github.com/aztechead/)
 
 ## Summary
 Enterprise technical leader with robust problem solving skills, exceptional leadership traits, with proven experience. Industry experience in airlines, automotive supply chains, and satellite networks. 
