@@ -78,7 +78,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 #### Key Achievements
 - Directed technical strategy for HA's guest facing applications.
 - Led migration of the pasenger service system and containerizes APIs on Amazon EKS.
-- Designed and launched HA's AWS booking engine generating ~\$1.3B annually.
+- Designed and launched HA's AWS booking engine generating all of self-service applications revenue annually.
 - Delivered for commit-to-production CI/CD pipeline with Python based testing suite
 - Created AI driven user behavior models to power dynamic guest experience. 
 
@@ -86,7 +86,7 @@ Drove technical direction for guest facing applications in Hawaiian Airlines dig
 Python, Angular, AWS, EKS, AI/ML Models
 
 #### Impact
-Enabled ~\$1.3B in annual revenue while modernizing Hawaiian Airlines digital platform through scalable cloud architectureand automation.
+Supported existing self-service annual revenue while modernizing Hawaiian Airlines digital platform through scalable cloud architecture and automation.
 
 ---
 
