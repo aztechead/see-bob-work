@@ -19,8 +19,12 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
     });
 
     // Convert markdown to HTML
-    const html = marked(content);
-    setHtmlContent(html);
+    const convertMarkdown = async () => {
+      const html = await marked(content);
+      setHtmlContent(html);
+    };
+    
+    convertMarkdown();
   }, [content]);
 
   return (

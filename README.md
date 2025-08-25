@@ -2,6 +2,68 @@
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features a markdown-based resume system for easy content management.
 
+## 🚀 Deployment
+
+### Current Status
+✅ **Local Development**: Working with `npm run dev`  
+✅ **Build Process**: Working with `npm run build`  
+✅ **Resume Rendering**: HTML rendering of markdown content
+
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+### Cloudflare Workers Deployment
+
+For deployment to Cloudflare Workers:
+
+1. **Install Wrangler CLI**
+   ```bash
+   npm install -g wrangler
+   ```
+
+2. **Login to Cloudflare**
+   ```bash
+   wrangler login
+   ```
+
+3. **Deploy**
+   ```bash
+   npm run deploy
+   ```
+
+### Alternative: Cloudflare Pages Deployment
+
+For static deployment:
+
+1. **Connect to Git Repository**
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+   - Navigate to Pages
+   - Click "Create a project" → "Connect to Git"
+   - Select your repository
+
+2. **Build Configuration**
+   - **Framework preset**: Next.js
+   - **Build command**: `npm run build`
+   - **Build output directory**: `.next`
+
+3. **Deploy**
+   - Click "Save and Deploy"
+
+### Features
+
+- **Resume Rendering**: HTML rendering of markdown content
+- **Responsive Design**: Works on all devices
+- **Dark Mode**: Automatic dark/light mode support
+- **Fast Loading**: Optimized for performance
 
 ## 🛠️ Development
 
