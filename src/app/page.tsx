@@ -1,272 +1,338 @@
 "use client";
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import content from '@/content/content.json';
+import type { SiteContent } from '@/content/types';
+import ExperienceCard from '@/components/ExperienceCard';
+import IndustryBadges from '@/components/IndustryBadges';
+import SkillBar from '@/components/SkillBar';
 import { experienceData } from '@/data/experience';
 import { skillsData } from '@/data/skills';
-import { contactData } from '@/data/contact';
-import { siteConfig } from '@/data/site';
-import ExperienceCard from '@/components/ExperienceCard';
-import SkillBar from '@/components/SkillBar';
+
+const siteContent = content as SiteContent;
+
+const principleIcons: Record<string, string> = {
+  lightning: 'M13 3L4 14h6l-1 7 9-11h-6l1-7z',
+  rocket: 'M12 2c3 0 7 4 7 7 0 2-1 4-3 5l1 5-5-1c-1 2-3 3-5 3-3 0-5-4-5-7s4-12 10-12z',
+  heart: 'M12 21l-1.1-1C5.1 15 2 12.2 2 8.8 2 6 4.2 4 7 4c1.6 0 3.1.8 4 2.1C12 4.8 13.4 4 15 4c2.8 0 5 2 5 4.8 0 3.4-3.1 6.2-8.9 11.2z'
+};
+
+function sectionIdFromHref(href: string): string {
+  return href.replace('#', '');
+}
 
 export default function Home() {
-  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+  const navLinks = siteContent.navigation.links;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(sectionIdFromHref(navLinks[0]?.href ?? '#about'));
 
-  const toggleCard = (index: number) => {
-    setFlippedCards(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+  const observedSectionIds = useMemo(
+    () => navLinks.map((link) => sectionIdFromHref(link.href)).filter(Boolean),
+    [navLinks]
+  );
+
+  useEffect(() => {
+    const sections = observedSectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-35% 0px -50% 0px',
+        threshold: [0.1, 0.3, 0.6]
+      }
     );
-  };
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [observedSectionIds]);
+
+  const handleMobileLinkClick = () => setIsMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-slate-900 dark:text-white">
-              {siteConfig.name}
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#about" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">About</a>
-              <a href="#experience" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Experience</a>
-              <a href="#contact" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Contact</a>
-              <Link href="/resume" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Resume</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="site-shell">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
 
-      {/* Hero Section with Split Layout */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-indigo-500/10 rounded-full animate-ping"></div>
-          <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-purple-500/10 rounded-full animate-bounce"></div>
-        </div>
+      <header className="site-header">
+        <div className="content-container">
+          <nav className="flex h-20 items-center justify-between" aria-label="Primary">
+            <Link href="/" className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-text)]">
+              {siteContent.site.name}
+            </Link>
 
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Content */}
-            <div className="text-center lg:text-left animate-fade-in-up">
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-slate-900 via-blue-600 to-indigo-600 dark:from-white dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent mb-6 animate-gradient">
-                {siteConfig.hero.name}
-              </h1>
-              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl lg:max-w-none">
-                {siteConfig.hero.tagline}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up">
-                <a 
-                  href="#experience" 
-                  className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-                >
-                  {siteConfig.hero.ctaPrimary}
-                </a>
-                <a 
-                  href="#contact" 
-                  className="px-8 py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-full font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover:scale-105"
-                >
-                  {siteConfig.hero.ctaSecondary}
-                </a>
-                <Link 
-                  href="/resume" 
-                  className="px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-full font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>View Resume</span>
-                </Link>
+            <div className="hidden items-center gap-2 md:flex">
+              {navLinks.map((link) => {
+                const sectionId = sectionIdFromHref(link.href);
+                const isActive = activeSection === sectionId;
+
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+              <Link href={siteContent.hero.ctaTertiary.href} className="btn btn-secondary ml-2">
+                {siteContent.navigation.resumeLabel}
+              </Link>
+            </div>
+
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] md:hidden"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle navigation menu"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </nav>
+
+          {isMobileMenuOpen && (
+            <div id="mobile-menu" className="mb-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3 md:hidden">
+              <ul className="space-y-1">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} onClick={handleMobileLinkClick} className="mobile-nav-link">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <Link href={siteContent.hero.ctaTertiary.href} onClick={handleMobileLinkClick} className="mobile-nav-link">
+                    {siteContent.navigation.resumeLabel}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </header>
+
+      <main id="main-content" className="pb-16">
+        <section className="section-block pt-14 sm:pt-20">
+          <div className="content-container">
+            <div className="grid items-center gap-8 lg:grid-cols-[1.25fr_0.75fr]">
+              <div>
+                <p className="text-base font-semibold uppercase tracking-[0.18em] text-[var(--color-primary)] sm:text-lg">{siteContent.hero.name}</p>
+                <h1 className="mt-4 text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl lg:text-5xl">
+                  {siteContent.hero.headline}
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-muted)]">{siteContent.hero.tagline}</p>
+                <p className="mt-4 text-sm font-medium text-[var(--color-muted)]">{siteContent.hero.availability}</p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href={siteContent.hero.ctaPrimary.href} className="btn btn-primary">
+                    {siteContent.hero.ctaPrimary.label}
+                  </a>
+                  <a href={siteContent.hero.ctaSecondary.href} className="btn btn-secondary">
+                    {siteContent.hero.ctaSecondary.label}
+                  </a>
+                  <Link href={siteContent.hero.ctaTertiary.href} className="btn btn-ghost">
+                    {siteContent.hero.ctaTertiary.label}
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            {/* Right Side - Pixel Art with Advanced Animations */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] group animate-float">
-                {/* Animated Background Layers */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 rounded-3xl transform rotate-6 transition-all duration-700 group-hover:rotate-12 animate-spin-slow"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-500/10 rounded-3xl transform -rotate-3 transition-all duration-700 group-hover:-rotate-6 animate-spin-slow-reverse"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-400/5 to-pink-500/5 rounded-3xl transform rotate-12 transition-all duration-700 group-hover:rotate-24 animate-spin-slow"></div>
-                
-                {/* Main Frame */}
-                <div className="relative w-full h-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all duration-700 group-hover:scale-105 group-hover:shadow-3xl animate-glow">
+              <aside className="portfolio-card p-6">
+                <div className="relative h-72 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)]">
                   <Image
                     src="/pixel-desk.png"
-                    alt="Pixel art of Bob working at desk"
+                    alt="Christopher Bobrowitz working at a desk"
                     fill
-                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-110"
+                    className="object-contain p-5"
                     priority
                   />
                 </div>
+                <div className="mt-5 space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted)]">Current Role</p>
+                  <p className="text-lg font-semibold text-[var(--color-text)]">Lead Platform Architect at Viasat</p>
+                  <p className="text-sm leading-6 text-[var(--color-muted)]">
+                    Building enterprise AI/ML and data platform capabilities for satellite and terrestrial content delivery systems.
+                  </p>
+                </div>
+              </aside>
+            </div>
 
-                {/* Floating Particles */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400/30 rounded-full animate-bounce animation-delay-1000"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-indigo-400/30 rounded-full animate-bounce animation-delay-1500"></div>
-                <div className="absolute top-1/2 -right-6 w-4 h-4 bg-purple-400/30 rounded-full animate-ping animation-delay-2000"></div>
-              </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {siteContent.trustSignals.map((signal) => (
+                <article key={signal.label} className="portfolio-card p-5">
+                  <p className="text-2xl font-bold text-[var(--color-text)]">{signal.value}</p>
+                  <p className="mt-1 text-sm font-semibold text-[var(--color-primary)]">{signal.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{signal.detail}</p>
+                </article>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About Section with Pixel Art Integration */}
-      <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 relative overflow-hidden">
-        {/* Floating Pixel Art Elements with Parallax */}
-        <div className="absolute top-10 right-10 w-24 h-24 opacity-10 dark:opacity-20 animate-float-slow parallax-element">
-          <Image
-            src="/pixel-desk.png"
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </div>
-        <div className="absolute bottom-10 left-10 w-16 h-16 opacity-10 dark:opacity-20 transform rotate-12 animate-float-slow-reverse parallax-element">
-          <Image
-            src="/pixel-desk.png"
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">{siteConfig.about.title}</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto animate-expand"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-left">
-              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                {siteConfig.about.description}
-              </p>
+        <section id="about" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="section-intro">
+              <h2>{siteContent.about.title}</h2>
+              <p>{siteContent.about.description}</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 p-8 rounded-2xl animate-fade-in-right hover:scale-105 transition-transform duration-300">
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Core Skills</h3>
-                              <div className="space-y-4">
-                  {skillsData.map((skill, index) => (
-                    <SkillBar 
-                      key={skill.name}
-                      name={skill.name}
-                      level={skill.level}
-                      delay={index * 200}
-                    />
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              <article className="portfolio-card p-7">
+                <h3 className="text-xl font-semibold text-[var(--color-text)]">Industry Context</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">
+                  Deep experience across highly regulated and high-scale domains where reliability, throughput, and operational clarity are non-negotiable.
+                </p>
+                <div className="mt-5">
+                  <IndustryBadges industries={siteContent.industries} />
+                </div>
+              </article>
+
+              <article className="portfolio-card p-7">
+                <h3 className="text-xl font-semibold text-[var(--color-text)]">Core Strengths</h3>
+                <div className="mt-5 space-y-5">
+                  {skillsData.map((skill) => (
+                    <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                   ))}
                 </div>
+              </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Experience Section with Flip Cards */}
-      <section id="experience" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Work Experience</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto animate-expand"></div>
-            <p className="text-lg text-slate-600 dark:text-slate-300 mt-6 max-w-2xl mx-auto">
-              Click on any experience card to see more details about my achievements and impact
-            </p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {experienceData.map((experience, index) => (
-              <ExperienceCard
-                key={index}
-                experience={experience}
-                index={index}
-                isFlipped={flippedCards.includes(index)}
-                onToggle={toggleCard}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section with Pixel Art */}
-      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 relative overflow-hidden">
-        {/* Background Pixel Art with Parallax */}
-        <div className="absolute bottom-0 right-0 w-32 h-32 opacity-5 dark:opacity-10 transform rotate-45 animate-float-slow parallax-element">
-          <Image
-            src="/pixel-desk.png"
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">{siteConfig.contact.title}</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto animate-expand"></div>
-            <p className="text-lg text-slate-600 dark:text-slate-300 mt-6">
-              {siteConfig.contact.subtitle}
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-600 p-8 rounded-2xl animate-fade-in-left hover:scale-105 transition-transform duration-300">
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Contact Info</h3>
-              <div className="space-y-4">
-                                  <div className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center animate-pulse">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <span className="text-slate-700 dark:text-slate-300">{contactData.email}</span>
-                  </div>
-                  <div className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center animate-pulse animation-delay-1000">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <span className="text-slate-700 dark:text-slate-300">{contactData.location}</span>
-                  </div>
-              </div>
+        <section id="impact" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="section-intro">
+              <h2>{siteContent.impact.title}</h2>
+              <p>{siteContent.impact.subtitle}</p>
             </div>
-            
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 p-8 rounded-2xl animate-fade-in-right hover:scale-105 transition-transform duration-300">
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Connect</h3>
-                              <div className="space-y-4">
-                  {contactData.social.map((social) => (
-                    <a 
-                      key={social.name}
-                      href={social.url} 
-                      className="flex items-center space-x-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105"
-                    >
-                      <div className="w-10 h-10 bg-slate-200 dark:bg-slate-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
-                        {social.icon === 'linkedin' && (
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        )}
-                        {social.icon === 'github' && (
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                          </svg>
-                        )}
-                      </div>
-                      <span>{social.name}</span>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {siteContent.impact.highlights.map((highlight) => (
+                <article key={highlight.title} className="portfolio-card p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-primary)]">{highlight.value}</p>
+                  <h3 className="mt-2 text-lg font-semibold text-[var(--color-text)]">{highlight.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">{highlight.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="philosophy" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="section-intro">
+              <h2>{siteContent.philosophyTitle}</h2>
+              <p>Principles that shape execution, team culture, and delivery quality.</p>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {siteContent.philosophy.map((principle) => (
+                <article key={principle.title} className="portfolio-card p-6">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-alt)] text-[var(--color-primary)]">
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={principleIcons[principle.icon] ?? principleIcons.heart} />
+                    </svg>
+                  </span>
+                  <h3 className="mt-4 text-xl font-semibold text-[var(--color-text)]">{principle.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">{principle.content}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="section-intro">
+              <h2>Experience</h2>
+              <p>Leadership roles spanning engineering management, architecture, and enterprise analytics.</p>
+            </div>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {experienceData.map((experience) => (
+                <ExperienceCard key={`${experience.company}-${experience.title}-${experience.period}`} experience={experience} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+              <article className="portfolio-card p-7">
+                <h2 className="text-3xl font-semibold text-[var(--color-text)]">{siteContent.contact.title}</h2>
+                <p className="mt-3 text-base leading-7 text-[var(--color-muted)]">{siteContent.contact.subtitle}</p>
+                <p className="mt-3 text-sm font-medium text-[var(--color-muted)]">{siteContent.contact.availability}</p>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a href={`mailto:${siteContent.contact.email}`} className="btn btn-primary">
+                    Email Me
+                  </a>
+                  <a href={siteContent.hero.ctaTertiary.href} className="btn btn-ghost">
+                    Download Resume
+                  </a>
+                </div>
+              </article>
+
+              <article className="portfolio-card p-7">
+                <h3 className="text-xl font-semibold text-[var(--color-text)]">Direct Contact</h3>
+                <ul className="mt-5 space-y-4 text-sm text-[var(--color-muted)]">
+                  <li>
+                    <p className="font-semibold text-[var(--color-text)]">Email</p>
+                    <a href={`mailto:${siteContent.contact.email}`} className="mt-1 inline-block text-[var(--color-primary)] hover:text-[var(--color-secondary)]">
+                      {siteContent.contact.email}
                     </a>
+                  </li>
+                  <li>
+                    <p className="font-semibold text-[var(--color-text)]">Location</p>
+                    <p className="mt-1">{siteContent.contact.location}</p>
+                  </li>
+                  {siteContent.contact.social.map((social) => (
+                    <li key={social.name}>
+                      <p className="font-semibold text-[var(--color-text)]">{social.name}</p>
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 inline-block text-[var(--color-primary)] hover:text-[var(--color-secondary)]"
+                      >
+                        {social.url}
+                      </a>
+                    </li>
                   ))}
-                </div>
+                </ul>
+              </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-slate-900 dark:bg-black">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400">
-            © 2025 {siteConfig.hero.name}
-          </p>
+      <footer className="border-t border-[var(--color-border)] py-8">
+        <div className="content-container">
+          <p className="text-sm text-[var(--color-muted)]">© 2026 {siteContent.hero.name}. Built with Next.js.</p>
         </div>
       </footer>
     </div>

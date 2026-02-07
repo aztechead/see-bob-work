@@ -15,14 +15,10 @@ export const experienceData: Experience[] = [
     "title": "Lead Platform Architect",
     "company": "Viasat",
     "period": "2025 - Present",
-    "summary": "Leading the design and implementation of the technical roadmap for Viasat's entertainment platform servicing airlines and residential customers around the globe.",
+    "summary": "Leading the design and implementation of Viasat's terrestrial and space based content delivery network servicing airlines and residential customers on planet Earth.",
     "details": {
-      "achievements": [
-        "Loading Achievements..."
-      ],
-      "technologies": [
-        "Lost count"
-      ],
+      "achievements": [],
+      "technologies": [],
       "impact": "Ensuring minimum bandwidth utilization, for maximum customer satisfaction."
     }
   },
@@ -34,7 +30,7 @@ export const experienceData: Experience[] = [
     "details": {
       "achievements": [
         "Shipped bandwidth reducing content personalization engine driven from machine learning.",
-        "Developed 2x improvement in user watch engagement.",
+        "Improved user watch engagement through machine learning personalization.",
         "Provided real-time analytics for data driven decision making.",
         "Researched several AI enabled POC's for traditional ML model replacement."
       ],
@@ -44,7 +40,7 @@ export const experienceData: Experience[] = [
         "Kubernetes",
         "AWS Sagemaker"
       ],
-      "impact": "Doubled engagement and reduced bandwidth with ML personalization while enabling real-time insights and advancing AI adoption."
+      "impact": "Improved engagement and reduced bandwidth with ML personalization while enabling real-time insights and advancing AI adoption."
     }
   },
   {

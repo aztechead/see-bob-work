@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 
@@ -182,9 +183,10 @@ export const contactData: Contact = ${JSON.stringify(contact, null, 2)};
   console.log(`📁 Output: ${outputPath}`);
 }
 
-// Update resume API route
-function updateResumeRoute() {
+// Update resume content source and API route
+function updateResumeSources() {
   const resumePath = path.join(__dirname, '../src/data/resume.md');
+  const resumeContentPath = path.join(__dirname, '../src/data/resume-content.ts');
   const routePath = path.join(__dirname, '../src/app/api/resume/route.ts');
   
   const markdown = fs.readFileSync(resumePath, 'utf8');
@@ -194,14 +196,17 @@ function updateResumeRoute() {
     .replace(/`/g, '\\`')
     .replace(/\$/g, '\\$');
   
+  // Generate shared resume content module
+  const resumeContentFile = `export const resumeContent = \`${escapedContent}\`;
+`;
+  fs.writeFileSync(resumeContentPath, resumeContentFile);
+
   // Generate the route file content
   const routeContent = `import { NextResponse } from 'next/server';
+import { resumeContent } from '@/data/resume-content';
 
 // Configure for Edge Runtime (required for Cloudflare Pages)
 export const runtime = 'edge';
-
-// Import resume content directly - this works in both environments
-const resumeContent = \`${escapedContent}\`;
 
 export async function GET() {
   try {
@@ -221,7 +226,9 @@ export async function GET() {
 `;
 
   fs.writeFileSync(routePath, routeContent);
-  console.log(`✅ Resume API route updated from resume.md`);
+  console.log(`✅ Resume content module updated from resume.md`);
+  console.log(`📁 Output: ${resumeContentPath}`);
+  console.log(`✅ Resume API route updated from shared content module`);
   console.log(`📁 Output: ${routePath}`);
 }
 
@@ -233,7 +240,7 @@ function main() {
     parseResume();
     parseSkills();
     parseContact();
-    updateResumeRoute();
+    updateResumeSources();
     
     console.log('\n✅ All data files generated successfully!');
     console.log('💡 Run this script whenever you update resume.md');
