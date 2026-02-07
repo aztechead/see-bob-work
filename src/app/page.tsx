@@ -292,7 +292,7 @@ export default function Home() {
                     Email Me
                   </a>
                   <a href={siteContent.hero.ctaTertiary.href} className="btn btn-ghost">
-                    Download Resume
+                    View Resume
                   </a>
                 </div>
               </article>

@@ -33,7 +33,7 @@
     "name": "Christopher Bobrowitz",
     "headline": "Enterprise Technology Leadership Across Data, Platforms, and AI",
     "tagline": "Lead Platform Architect at Viasat with 10+ years delivering cloud-native systems across airline, automotive, and satellite organizations.",
-    "availability": "Currently employed at Viasat, open to select side projects.",
+    "availability": "Currently employed at Viasat, open to select contract-based projects.",
     "ctaPrimary": {
       "label": "View Experience",
       "href": "#experience"
@@ -61,12 +61,12 @@
     {
       "value": "Player-Coach",
       "label": "Leadership style",
-      "detail": "Sets architectural direction while staying close to delivery."
+      "detail": "Sets architectural direction while staying close to delivery"
     },
     {
       "value": "End-to-End",
       "label": "Execution coverage",
-      "detail": "From platform strategy to production delivery and team enablement."
+      "detail": "From platform strategy to production delivery and team enablement"
     }
   ],
   "impact": {

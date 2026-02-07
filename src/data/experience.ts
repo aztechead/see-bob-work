@@ -17,8 +17,25 @@ export const experienceData: Experience[] = [
     "period": "2025 - Present",
     "summary": "Leading the design and implementation of Viasat's terrestrial and space based content delivery network servicing airlines and residential customers on planet Earth.",
     "details": {
-      "achievements": [],
-      "technologies": [],
+      "achievements": [
+        "Architecting production analytics platform on GCP, empowering teams with self-service data capabilities",
+        "Builing real-time analytics platroms, enabling cross-functional teams to make faster data-driven decisions",
+        "Educating developers on building Agentic Applications, fostering innovation in AI-driven development",
+        "Championing Infrastructure as Code adoption, mentoring engineers on Terragrunt and GitHub Actions CI/CD best practices",
+        "Driving engineering excellence through collaborative code reviews, knowledge sharing, and architectural patterns that balance rigor with team autonomy"
+      ],
+      "technologies": [
+        "Google Cloud Platform (GCP)",
+        "Kore.AI",
+        "Vertex AI",
+        "Apache Airflow",
+        "dbt",
+        "Kubernetes",
+        "Apache Kafka",
+        "Terragrunt",
+        "GitHub Actions",
+        "Python"
+      ],
       "impact": "Ensuring minimum bandwidth utilization, for maximum customer satisfaction."
     }
   },

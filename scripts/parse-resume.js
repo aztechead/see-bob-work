@@ -37,26 +37,35 @@ function parseResume() {
     
     const [, title, company, period] = titleMatch;
     
-    // Extract summary (text between period and first ####)
-    const summaryMatch = block.match(/\*\*.*?\*\* \| .*?\n\n(.+?)(?=\n#### |$)/s);
+    // Extract summary (text between role line and first section heading)
+    const summaryMatch = block.match(/\*\*.*?\*\* \| .*?\n\s*\n([\s\S]*?)(?=\n####\s|$)/);
     const summary = summaryMatch ? summaryMatch[1].trim() : '';
     
     // Extract achievements
-    const achievementsMatch = block.match(/#### Key Achievements\n((?:- .+?\n)+)/);
-    const achievements = achievementsMatch 
-      ? achievementsMatch[1].split('\n')
-          .filter(line => line.trim().startsWith('- '))
-          .map(line => line.replace('- ', '').trim())
+    const achievementsMatch = block.match(/#### Key Achievements\s*\n([\s\S]*?)(?=\n####\s|$)/);
+    const achievements = achievementsMatch
+      ? achievementsMatch[1]
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line.startsWith('- '))
+          .map(line => line.replace(/^- /, '').trim())
       : [];
     
-    // Extract technologies - look for the line after "#### Technologies"
-    const technologiesMatch = block.match(/#### Technologies\n([^\n]+)/);
-    const technologies = technologiesMatch 
-      ? technologiesMatch[1].trim().split(',').map(tech => tech.trim())
+    // Extract technologies - handle optional blank lines after heading
+    const technologiesMatch = block.match(/#### Technologies\s*\n([\s\S]*?)(?=\n####\s|$)/);
+    const technologies = technologiesMatch
+      ? technologiesMatch[1]
+          .split('\n')
+          .map(line => line.trim())
+          .filter(Boolean)
+          .join(' ')
+          .split(',')
+          .map(tech => tech.trim())
+          .filter(Boolean)
       : [];
     
     // Extract impact
-    const impactMatch = block.match(/#### Impact\n(.+?)(?=\n|$)/);
+    const impactMatch = block.match(/#### Impact\s*\n([\s\S]*?)(?=\n####\s|$)/);
     const impact = impactMatch ? impactMatch[1].trim() : '';
     
     experiences.push({
