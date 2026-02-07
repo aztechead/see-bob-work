@@ -1,4 +1,4 @@
-# Christopher Bobrowitz - Enterprise Technical Leader
+export const resumeContent = `# Christopher Bobrowitz - Enterprise Technical Leader
 
 ## Contact
 - **Email**: chris.bobrowitz@gmail.com
@@ -141,3 +141,4 @@ Improved aftersales efficiency and decision making by modernizing applications a
 
 ## Education
 - **B.S.B.A Computer Information Systems** | Northern Arizona University | 2015
+`;

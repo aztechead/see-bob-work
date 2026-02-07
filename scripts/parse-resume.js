@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 
@@ -36,26 +37,35 @@ function parseResume() {
     
     const [, title, company, period] = titleMatch;
     
-    // Extract summary (text between period and first ####)
-    const summaryMatch = block.match(/\*\*.*?\*\* \| .*?\n\n(.+?)(?=\n#### |$)/s);
+    // Extract summary (text between role line and first section heading)
+    const summaryMatch = block.match(/\*\*.*?\*\* \| .*?\n\s*\n([\s\S]*?)(?=\n####\s|$)/);
     const summary = summaryMatch ? summaryMatch[1].trim() : '';
     
     // Extract achievements
-    const achievementsMatch = block.match(/#### Key Achievements\n((?:- .+?\n)+)/);
-    const achievements = achievementsMatch 
-      ? achievementsMatch[1].split('\n')
-          .filter(line => line.trim().startsWith('- '))
-          .map(line => line.replace('- ', '').trim())
+    const achievementsMatch = block.match(/#### Key Achievements\s*\n([\s\S]*?)(?=\n####\s|$)/);
+    const achievements = achievementsMatch
+      ? achievementsMatch[1]
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line.startsWith('- '))
+          .map(line => line.replace(/^- /, '').trim())
       : [];
     
-    // Extract technologies - look for the line after "#### Technologies"
-    const technologiesMatch = block.match(/#### Technologies\n([^\n]+)/);
-    const technologies = technologiesMatch 
-      ? technologiesMatch[1].trim().split(',').map(tech => tech.trim())
+    // Extract technologies - handle optional blank lines after heading
+    const technologiesMatch = block.match(/#### Technologies\s*\n([\s\S]*?)(?=\n####\s|$)/);
+    const technologies = technologiesMatch
+      ? technologiesMatch[1]
+          .split('\n')
+          .map(line => line.trim())
+          .filter(Boolean)
+          .join(' ')
+          .split(',')
+          .map(tech => tech.trim())
+          .filter(Boolean)
       : [];
     
     // Extract impact
-    const impactMatch = block.match(/#### Impact\n(.+?)(?=\n|$)/);
+    const impactMatch = block.match(/#### Impact\s*\n([\s\S]*?)(?=\n####\s|$)/);
     const impact = impactMatch ? impactMatch[1].trim() : '';
     
     experiences.push({
@@ -182,9 +192,10 @@ export const contactData: Contact = ${JSON.stringify(contact, null, 2)};
   console.log(`📁 Output: ${outputPath}`);
 }
 
-// Update resume API route
-function updateResumeRoute() {
+// Update resume content source and API route
+function updateResumeSources() {
   const resumePath = path.join(__dirname, '../src/data/resume.md');
+  const resumeContentPath = path.join(__dirname, '../src/data/resume-content.ts');
   const routePath = path.join(__dirname, '../src/app/api/resume/route.ts');
   
   const markdown = fs.readFileSync(resumePath, 'utf8');
@@ -194,14 +205,17 @@ function updateResumeRoute() {
     .replace(/`/g, '\\`')
     .replace(/\$/g, '\\$');
   
+  // Generate shared resume content module
+  const resumeContentFile = `export const resumeContent = \`${escapedContent}\`;
+`;
+  fs.writeFileSync(resumeContentPath, resumeContentFile);
+
   // Generate the route file content
   const routeContent = `import { NextResponse } from 'next/server';
+import { resumeContent } from '@/data/resume-content';
 
 // Configure for Edge Runtime (required for Cloudflare Pages)
 export const runtime = 'edge';
-
-// Import resume content directly - this works in both environments
-const resumeContent = \`${escapedContent}\`;
 
 export async function GET() {
   try {
@@ -221,7 +235,9 @@ export async function GET() {
 `;
 
   fs.writeFileSync(routePath, routeContent);
-  console.log(`✅ Resume API route updated from resume.md`);
+  console.log(`✅ Resume content module updated from resume.md`);
+  console.log(`📁 Output: ${resumeContentPath}`);
+  console.log(`✅ Resume API route updated from shared content module`);
   console.log(`📁 Output: ${routePath}`);
 }
 
@@ -233,7 +249,7 @@ function main() {
     parseResume();
     parseSkills();
     parseContact();
-    updateResumeRoute();
+    updateResumeSources();
     
     console.log('\n✅ All data files generated successfully!');
     console.log('💡 Run this script whenever you update resume.md');

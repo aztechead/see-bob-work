@@ -1,0 +1,148 @@
+{
+  "site": {
+    "name": "seebobwork",
+    "title": "Christopher Bobrowitz - Lead Platform Architect @ Viasat | seebobwork",
+    "description": "Lead Platform Architect at Viasat building enterprise-grade AI/ML platforms with 10+ years scaling systems at Fortune 500 companies."
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Impact",
+        "href": "#impact"
+      },
+      {
+        "label": "Principles",
+        "href": "#philosophy"
+      },
+      {
+        "label": "Experience",
+        "href": "#experience"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "resumeLabel": "Resume"
+  },
+  "hero": {
+    "name": "Christopher Bobrowitz",
+    "headline": "Enterprise Technology Leadership Across Data, Platforms, and AI",
+    "tagline": "Lead Platform Architect at Viasat with 10+ years delivering cloud-native systems across airline, automotive, and satellite organizations.",
+    "availability": "Currently employed at Viasat, open to select contract-based projects.",
+    "ctaPrimary": {
+      "label": "View Experience",
+      "href": "#experience"
+    },
+    "ctaSecondary": {
+      "label": "Get In Touch",
+      "href": "#contact"
+    },
+    "ctaTertiary": {
+      "label": "View Resume",
+      "href": "/resume"
+    }
+  },
+  "trustSignals": [
+    {
+      "value": "10+ Years",
+      "label": "Enterprise delivery",
+      "detail": "Fortune 500 product and platform programs"
+    },
+    {
+      "value": "3 Industries",
+      "label": "Cross-domain leadership",
+      "detail": "Automotive, airlines, and satellite telecom"
+    },
+    {
+      "value": "Player-Coach",
+      "label": "Leadership style",
+      "detail": "Sets architectural direction while staying close to delivery"
+    },
+    {
+      "value": "End-to-End",
+      "label": "Execution coverage",
+      "detail": "From platform strategy to production delivery and team enablement"
+    }
+  ],
+  "impact": {
+    "title": "Selected Impact",
+    "subtitle": "Outcomes delivered across platform architecture, analytics, and machine learning.",
+    "highlights": [
+      {
+        "value": "Revenue-Critical",
+        "title": "Digital Platform Modernization",
+        "description": "Led modernization of booking and self-service systems supporting core customer revenue flows."
+      },
+      {
+        "value": "Enterprise-Wide",
+        "title": "Data Platform Adoption",
+        "description": "Scaled centralized analytics capabilities to self-service teams across Hawaiian Airlines."
+      },
+      {
+        "value": "Production",
+        "title": "AI Platform Delivery",
+        "description": "Architecting next-generation AI/ML platform capabilities for content delivery at Viasat."
+      }
+    ]
+  },
+  "about": {
+    "title": "About",
+    "description": "Lead Platform Architect at Viasat with 10+ years building enterprise-grade systems at Fortune 500 companies. Specialized in AI/ML platform architecture, cloud-native infrastructure, and technical leadership across automotive, airline, and satellite industries. Currently architecting next-generation AI platforms while staying hands-on with modern technologies."
+  },
+  "philosophyTitle": "Operating Principles",
+  "philosophy": [
+    {
+      "title": "Agency is everything",
+      "icon": "lightning",
+      "content": "The work I'm proudest of happened because I just started. Most people would rather discuss than do. Most decisions are reversible and you're rewarded for moving first."
+    },
+    {
+      "title": "Ship or die",
+      "icon": "rocket",
+      "content": "Speed wins. Fast iteration beats perfect planning. The barriers to shipping are usually imaginary."
+    },
+    {
+      "title": "Being human matters more than ever",
+      "icon": "heart",
+      "content": "AI commoditizes execution while human creativity becomes scarce. We're wired to value what other humans make. Authenticity compounds exponentially. Most people won't put themselves out there, so they never capture the value they create."
+    }
+  ],
+  "industries": [
+    {
+      "name": "Automotive",
+      "icon": "car"
+    },
+    {
+      "name": "Airlines",
+      "icon": "plane"
+    },
+    {
+      "name": "Satellite & Telecom",
+      "icon": "satellite"
+    }
+  ],
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Available for high-impact consulting and architecture discussions.",
+    "availability": "Open to select side projects aligned with platform engineering and AI/ML.",
+    "email": "chris.bobrowitz@gmail.com",
+    "location": "Remote, United States",
+    "social": [
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/christopherbobrowitz/",
+        "icon": "linkedin"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/aztechead/see-bob-work",
+        "icon": "github"
+      }
+    ]
+  }
+}

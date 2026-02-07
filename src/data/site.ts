@@ -1,3 +1,9 @@
+import content from '@/content/content.json';
+import type { SiteContent } from '@/content/types';
+import { skillsData } from '@/data/skills';
+
+const siteContent = content as SiteContent;
+
 export interface SiteConfig {
   name: string;
   title: string;
@@ -30,41 +36,25 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "seebobwork",
-  title: "Christopher Bobrowitz - Enterprise Engineering Leader | seebobwork",
-  description: "Enterprise engineering leader with a passion for building scalable solutions and winning teams.",
+  name: siteContent.site.name,
+  title: siteContent.site.title,
+  description: siteContent.site.description,
   hero: {
-    name: "Christopher Bobrowitz",
-    tagline: "Enterprise engineering leader with a passion for building scalable solutions and winning teams.",
-    ctaPrimary: "View Experience",
-    ctaSecondary: "Get in Touch"
+    name: siteContent.hero.name,
+    tagline: siteContent.hero.tagline,
+    ctaPrimary: siteContent.hero.ctaPrimary.label,
+    ctaSecondary: siteContent.hero.ctaSecondary.label
   },
   about: {
-    title: "About Me",
-    description: "I'm a senior engineering leader with extensive experience in building robust, scalable applications that drive business value. My expertise spans across the automotive, airline, and satellite industries. Throughout my career, I've collaborated with cross-functional teams to deliver high-impact solutions that meet complex business requirements while maintaining code quality and system reliability.",
-    skills: [
-      { name: "Engineering Leadership", level: 92 },
-      { name: "Platform Architecture", level: 89 },
-      { name: "Digital Transformation", level: 80 },
-      { name: "AI Toolsets", level: 76 }
-    ]
+    title: siteContent.about.title,
+    description: siteContent.about.description,
+    skills: skillsData
   },
   contact: {
-    title: "Get In Touch",
-    subtitle: "I'm always interested in new opportunities and collaborations. Let's connect!",
-    email: "chris.bobrowitz@gmail.com",
-    location: "Remote, United States",
-    social: [
-      {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/christopherbobrowitz/",
-        icon: "linkedin"
-      },
-      {
-        name: "GitHub",
-        url: "https://github.com/aztechead/see-bob-work",
-        icon: "github"
-      }
-    ]
+    title: siteContent.contact.title,
+    subtitle: siteContent.contact.subtitle,
+    email: siteContent.contact.email,
+    location: siteContent.contact.location,
+    social: siteContent.contact.social
   }
 };

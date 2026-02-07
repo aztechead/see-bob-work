@@ -15,13 +15,26 @@ export const experienceData: Experience[] = [
     "title": "Lead Platform Architect",
     "company": "Viasat",
     "period": "2025 - Present",
-    "summary": "Leading the design and implementation of the technical roadmap for Viasat's entertainment platform servicing airlines and residential customers around the globe.",
+    "summary": "Leading the design and implementation of Viasat's terrestrial and space based content delivery network servicing airlines and residential customers on planet Earth.",
     "details": {
       "achievements": [
-        "Loading Achievements..."
+        "Architecting production analytics platform on GCP, empowering teams with self-service data capabilities",
+        "Builing real-time analytics platroms, enabling cross-functional teams to make faster data-driven decisions",
+        "Educating developers on building Agentic Applications, fostering innovation in AI-driven development",
+        "Championing Infrastructure as Code adoption, mentoring engineers on Terragrunt and GitHub Actions CI/CD best practices",
+        "Driving engineering excellence through collaborative code reviews, knowledge sharing, and architectural patterns that balance rigor with team autonomy"
       ],
       "technologies": [
-        "Lost count"
+        "Google Cloud Platform (GCP)",
+        "Kore.AI",
+        "Vertex AI",
+        "Apache Airflow",
+        "dbt",
+        "Kubernetes",
+        "Apache Kafka",
+        "Terragrunt",
+        "GitHub Actions",
+        "Python"
       ],
       "impact": "Ensuring minimum bandwidth utilization, for maximum customer satisfaction."
     }
@@ -34,7 +47,7 @@ export const experienceData: Experience[] = [
     "details": {
       "achievements": [
         "Shipped bandwidth reducing content personalization engine driven from machine learning.",
-        "Developed 2x improvement in user watch engagement.",
+        "Improved user watch engagement through machine learning personalization.",
         "Provided real-time analytics for data driven decision making.",
         "Researched several AI enabled POC's for traditional ML model replacement."
       ],
@@ -44,7 +57,7 @@ export const experienceData: Experience[] = [
         "Kubernetes",
         "AWS Sagemaker"
       ],
-      "impact": "Doubled engagement and reduced bandwidth with ML personalization while enabling real-time insights and advancing AI adoption."
+      "impact": "Improved engagement and reduced bandwidth with ML personalization while enabling real-time insights and advancing AI adoption."
     }
   },
   {
