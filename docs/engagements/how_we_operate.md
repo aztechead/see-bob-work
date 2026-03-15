@@ -53,6 +53,30 @@ You're growing but hiring decisions are gut calls. You don't know how many peopl
 
 I connect your sales pipeline to your resource pool. When a proposal moves to likely-to-close, you can see the capacity impact. You know which roles you're short on and when the gap hits. Hiring becomes a planning exercise instead of a fire drill.
 
+**AI agents that do real work**
+
+You've heard about AI but what you've seen is chatbots and demos. Nobody has shown you what it looks like when AI actually handles a piece of your operations: reviewing documents, answering questions from your data, routing requests, or kicking off a workflow based on a trigger.
+
+I design and build AI agent systems tailored to your business. These aren't generic tools. They're purpose-built agents that understand your processes, connect to your systems, and handle specific tasks end to end. I've built agent architectures that coordinate multiple specialized agents working together, handle multi-step conversations, and run autonomously in production.
+
+**Ask your data questions in plain English**
+
+Your team has data sitting in tools they already use, but getting answers means knowing how to write queries, build reports, or track down the person who knows the system. So people either guess or wait for someone to pull numbers for them.
+
+I build AI agents that sit inside your existing communication tools. Your team asks a question in plain language and gets an answer from your own data. No training, no new logins, no waiting on the one person who knows how to run the report.
+
+**Customer-facing systems that reduce your operational load**
+
+Your customers interact with your business through phone calls, emails, and PDFs. Every request requires someone on your team to process it manually. As you grow, your back office grows with it because there's no way for customers to help themselves.
+
+I build self-service portals and digital workflows that let your customers submit requests, check status, approve documents, and get answers without calling your office. I've modernized customer-facing systems at organizations serving millions of users. The result is the same every time: your team handles more volume with fewer people, and your customers get faster answers.
+
+**Standardizing how teams work**
+
+Every office, team, or department does the same process a little differently. Onboarding looks one way in one location and another way somewhere else. Templates are out of date. There's no single source of truth for how things should be done.
+
+I build systems that enforce consistency: standardized templates, automated workflows, and shared processes that every team uses the same way. When something needs to change, it changes once and rolls out everywhere.
+
 ## What Makes This Different
 
 **I build, not just advise.** When the engagement ends, you have working systems, not a PowerPoint about working systems.
