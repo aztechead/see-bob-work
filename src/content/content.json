@@ -15,6 +15,10 @@
         "href": "#impact"
       },
       {
+        "label": "Current Work",
+        "href": "#current-work"
+      },
+      {
         "label": "Principles",
         "href": "#philosophy"
       },
@@ -87,6 +91,32 @@
         "value": "Production",
         "title": "AI Platform Delivery",
         "description": "Architecting next-generation AI/ML platform capabilities for content delivery at Viasat."
+      }
+    ]
+  },
+  "currentWork": {
+    "title": "What I'm Working On",
+    "subtitle": "Current projects and active development work.",
+    "projects": [
+      {
+        "value": "Production",
+        "title": "AI-Powered Code Review Pipeline",
+        "description": "Built and deployed an AI agent that automatically reviews pull requests for code quality, security, and standards compliance. Handles incremental diffs, avoids noise, and runs autonomously in a cloud-native deployment pipeline."
+      },
+      {
+        "value": "Active Development",
+        "title": "Multi-Agent Operations Framework",
+        "description": "Designing a framework where specialized AI agents collaborate on operational tasks, from querying monitoring dashboards to routing conversations in team chat. Built on modern agent-to-agent protocols with multi-turn conversation support."
+      },
+      {
+        "value": "Ongoing",
+        "title": "Cloud Infrastructure Automation",
+        "description": "Managing multi-environment cloud infrastructure using infrastructure-as-code, including service deployments, load balancer consolidation, and cross-environment access controls. Automated from planning through apply across dev, staging, and production."
+      },
+      {
+        "value": "Ongoing",
+        "title": "Developer Tooling & CI/CD",
+        "description": "Building internal developer tools and deployment pipelines that support dual-environment deployments, automated documentation generation, and codebase-wide standardization across multiple repositories."
       }
     ]
   },

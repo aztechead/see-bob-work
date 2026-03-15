@@ -241,6 +241,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="current-work" className="section-block pt-16 sm:pt-20">
+          <div className="content-container">
+            <div className="section-intro">
+              <h2>{siteContent.currentWork.title}</h2>
+              <p>{siteContent.currentWork.subtitle}</p>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {siteContent.currentWork.projects.map((project) => (
+                <article key={project.title} className="portfolio-card p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-primary)]">{project.value}</p>
+                  <h3 className="mt-2 text-lg font-semibold text-[var(--color-text)]">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">{project.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="philosophy" className="section-block pt-16 sm:pt-20">
           <div className="content-container">
             <div className="section-intro">
