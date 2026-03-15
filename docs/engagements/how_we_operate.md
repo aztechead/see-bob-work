@@ -53,6 +53,24 @@ You're growing but hiring decisions are gut calls. You don't know how many peopl
 
 I connect your sales pipeline to your resource pool. When a proposal moves to likely-to-close, you can see the capacity impact. You know which roles you're short on and when the gap hits. Hiring becomes a planning exercise instead of a fire drill.
 
+**Quality review automation**
+
+Deliverables go out with mistakes because review is manual and inconsistent. Someone catches the pricing error in the proposal after the client already saw it. Compliance documents get filed with missing fields. The checklist lives in someone's head and gets skipped when things are busy.
+
+I build automated review systems that check work against your standards before it reaches a client or a regulator. These run every time, on every deliverable, without needing someone to remember to do it.
+
+**Ask your data questions in plain English**
+
+Your team has data sitting in tools they already use, but getting answers means knowing how to write queries, build reports, or track down the person who knows the system. So people either guess or wait for someone to pull numbers for them.
+
+I build AI agents that sit inside your existing communication tools. Your team asks a question in plain language and gets an answer from your own data. No training, no new logins, no waiting on the one person who knows how to run the report.
+
+**Standardizing how teams work**
+
+Every office, team, or department does the same process a little differently. Onboarding looks one way in one location and another way somewhere else. Templates are out of date. There's no single source of truth for how things should be done.
+
+I build systems that enforce consistency: standardized templates, automated workflows, and shared processes that every team uses the same way. When something needs to change, it changes once and rolls out everywhere.
+
 ## What Makes This Different
 
 **I build, not just advise.** When the engagement ends, you have working systems, not a PowerPoint about working systems.
