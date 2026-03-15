@@ -6,25 +6,7 @@ I build the operational systems that Fortune 500 companies run on. I bring that 
 
 Most companies in the $10-50M range run critical operations on spreadsheets, email, and institutional knowledge. The person who knows how pricing works keeps it in their head. Project profitability gets calculated in a spreadsheet that's three months stale. Hiring decisions are gut calls because nobody can see what the pipeline looks like next quarter.
 
-They know it's not working. But they don't have anyone in-house who has seen what good looks like at scale. They've never had a centralized data platform, an automated deployment pipeline, or a system that connects their sales pipeline to their resource pool in real time.
-
 Consultants will come in, diagnose the problem, hand you a deck, and leave. I find the opportunity, build the solution, and coach your team to own it.
-
-## Background
-
-I've spent 10+ years as a platform architect and engineering leader at Fortune 500 companies across three industries: automotive, airlines, and satellite telecom.
-
-**What that means in practice:**
-
-- Led modernization of revenue-critical booking and self-service systems that supported core customer flows for a major airline
-- Built and scaled a centralized analytics platform from scratch, taking it from a single team's tool to a self-service capability used across an entire organization
-- Architected and delivered AI/ML platform capabilities for content delivery systems serving millions of users
-- Managed cloud infrastructure across multiple environments using infrastructure-as-code, handling everything from service deployments and load balancer configurations to cross-environment access controls
-- Built and deployed AI agents that run autonomously in production: automated code review systems, monitoring query agents, multi-agent frameworks with conversational interfaces
-
-I operate as a player-coach. I set architectural direction and I stay close to delivery. I write code, deploy infrastructure, review pull requests, and debug production issues. I've managed 14,000+ lines of code changes across 200+ files in a single month using AI-augmented development workflows.
-
-The combination matters. I've seen how large enterprises structure their operations, and I have the technical ability to actually build those systems, not just talk about them.
 
 ## Who This Is For
 
@@ -34,70 +16,73 @@ The combination matters. I've seen how large enterprises structure their operati
 
 If your company's core product is software, I'm probably not the right fit. I work with companies where technology supports the business, not where technology is the business.
 
+## Background
+
+I've spent 10+ years as a platform architect and engineering leader at Fortune 500 companies across three industries: automotive, airlines, and satellite telecom.
+
+In practice, that means I've built the systems that these organizations run on:
+
+- Modernized how a major airline handled bookings and customer self-service, replacing legacy systems that were slowing down revenue-critical operations
+- Built an analytics platform from scratch that went from one team's internal tool to a self-service capability used by departments across the entire organization
+- Delivered AI-powered systems that serve millions of end users in production, not proofs of concept
+- Took a professional services organization's project tracking from quarterly spreadsheet reviews to real-time margin visibility across every active engagement
+
+I operate as a player-coach. I set the direction and I do the work. I don't hand off a requirements doc and wait for someone else to build it.
+
+The combination matters. I've seen how large enterprises structure their operations, and I can actually build those systems for your company.
+
 ## Examples of Problems I Solve
 
-These are representative, not exhaustive. The point is to show the type of operational problems I take on and what the solutions look like.
+These are representative, not exhaustive.
 
 **Proposal operations**
 
-Your team spends 20 hours a week assembling proposals in Word and Excel. Pricing lives in someone's head or a spreadsheet that's out of date. Approvals happen over email threads that get lost. You have no visibility into which proposals are in flight, what their margins look like, or how long they take to close.
+Your team spends 20 hours a week assembling proposals in Word and Excel. Pricing lives in someone's head. Approvals happen over email threads that get lost. You have no visibility into what's in flight or how long proposals take to close.
 
-I build systems that handle document assembly, pricing lookups, and approval workflows. Your team fills in the specifics; the system handles the structure, the math, and the routing. Proposals go out faster and with fewer errors. You get a clear view of your pipeline.
+I build systems that handle document assembly, pricing, and approval routing. Proposals go out faster with fewer errors, and you get a clear view of your pipeline.
 
 **Project profitability**
 
-You find out a project lost money three months after it ended. Labor costs are tracked in one system, expenses in another, and revenue in a third. Nobody pulls it together until someone asks. By then, you've already staffed the next project the same way.
+You find out a project lost money three months after it ended. Labor costs are tracked in one system, expenses in another, revenue in a third. Nobody pulls it together until someone asks.
 
-I build real-time visibility into project economics: labor costs based on actual hours and rates, expenses as they're incurred, and revenue as it's recognized. Dashboards show margin by project, by client, by team. You see problems while you can still fix them.
+I build real-time visibility into project economics: labor costs, expenses, and revenue in one place. Dashboards show margin by project, by client, by team. You see problems while you can still fix them.
 
 **Capacity planning**
 
-You're growing but hiring decisions are gut calls. You don't know how many people you need next quarter because you can't see what's coming down the pipeline or how your current team is allocated. You either overhire and eat the cost or underhire and burn people out.
+You're growing but hiring decisions are gut calls. You don't know how many people you need next quarter because you can't see what's in the pipeline or how your current team is allocated.
 
-I connect your sales pipeline to your resource pool. When a proposal moves to likely-to-close, you can see the capacity impact. You know which roles you're short on, when the gap hits, and whether you need a full-time hire or a contractor. Hiring becomes a planning exercise instead of a fire drill.
-
-**Reporting and visibility**
-
-Your leadership team asks for a report and someone spends two days pulling data from five different places to build a slide deck. By the time it's presented, the numbers are already stale.
-
-I build dashboards and automated reporting that pull from your systems of record. The data is live. Leadership can look at it whenever they want. Your ops people stop being report-generators and start being analysts.
-
-**Process automation**
-
-You have manual workflows that involve copying data between systems, sending follow-up emails, generating documents, or updating records. People do this work because "that's how we've always done it." It's error-prone, it doesn't scale, and it takes your best people away from higher-value work.
-
-I identify the highest-impact automation opportunities and build them. Not theoretical AI demos. Working systems that handle the repetitive work so your team can focus on the parts that require judgment.
+I connect your sales pipeline to your resource pool. When a proposal moves to likely-to-close, you can see the capacity impact. You know which roles you're short on and when the gap hits. Hiring becomes a planning exercise instead of a fire drill.
 
 ## What Makes This Different
 
-**I build, not just advise.** Most consultants produce recommendations. I produce running systems. When the engagement ends, you have working software, not a PowerPoint about working software.
+**I build, not just advise.** When the engagement ends, you have working systems, not a PowerPoint about working systems.
 
-**I've done this at scale.** The patterns I bring to your 100-person company are the same ones I built for organizations with thousands of employees. I've seen what works and what doesn't. I'm not experimenting on your business.
+**I coach your team to own it.** Player-coach approach. I work alongside your team, explain the decisions, write the documentation, and make sure they can maintain and extend what I built. When the project closes, the knowledge stays in your organization.
 
-**I coach your team to own it.** Player-coach approach. I don't just build something and hand over a login. I work alongside your team, explain the decisions, write the documentation, and make sure they can maintain and extend what I built. When the project closes, the knowledge stays in your organization.
-
-**AI is my multiplier, not my product.** I'm not selling you "AI." I'm using AI-powered development workflows to move faster than a traditional consultancy. I build and deploy AI agents as part of my daily work. I use multi-agent frameworks, automated code review, infrastructure-as-code, and cloud-native deployment pipelines. That's what lets one person deliver what traditionally required a team of five over six months.
-
-**I know what you don't know you need.** Companies that have never had enterprise-grade operations don't know what the gaps are. They don't know that their proposal process could be 10x faster, or that real-time margin visibility is even possible. I've built those systems. I can see the gaps immediately and prioritize by impact.
+**AI is how I move fast.** I use AI tools in my daily workflow to build and ship faster than a traditional consultancy. That's what lets one person deliver what would normally take a larger team and a longer timeline.
 
 ## How Engagements Work
 
-**Assessment**
+**Assessment** (1-2 weeks)
 
-I spend time understanding your operations: how work flows through your organization, where the bottlenecks are, what data exists and where it lives, and what your team's capabilities look like. This isn't a lengthy discovery phase. I've seen enough operational patterns across industries to identify the high-impact opportunities quickly.
+I look at how work flows through your organization, where the bottlenecks are, what data exists and where it lives, and what your team can handle. I've seen enough operational patterns across industries to identify the high-impact opportunities quickly.
 
 The output is a prioritized list of what to fix first, scoped into concrete projects with expected outcomes.
 
-**Build**
+**Build** (4-8 weeks for a typical first project)
 
-Scoped projects with clear deliverables and timelines. I work iteratively: build something, show it to you, get feedback, refine. You see progress in days, not months.
+Scoped projects with clear deliverables. I work iteratively: build something, show it to you, get feedback, refine. You see progress in days, not months.
 
 I work in your environment with your tools where possible. If you need new infrastructure, I set it up and document it. Everything is built to be maintained by your team, not by me.
 
 **Handoff**
 
-Coaching, documentation, and transition. I walk your team through what was built, why it was built that way, and how to maintain and extend it. I'm available for questions after handoff.
+Coaching, documentation, and transition. I walk your team through what was built, why it was built that way, and how to maintain and extend it. I'm available for questions for 30 days after handoff at no additional cost.
 
 **Ongoing support**
 
-Optional retainer for continued support, new projects, or advisory. Many engagements start with a single project and expand as the team sees what's possible.
+Optional retainer for continued support, new projects, or advisory.
+
+## Get Started
+
+If this sounds like your situation, reach out: [chris.bobrowitz@gmail.com](mailto:chris.bobrowitz@gmail.com)
