@@ -65,6 +65,12 @@ Your team has data sitting in tools they already use, but getting answers means 
 
 I build AI agents that sit inside your existing communication tools. Your team asks a question in plain language and gets an answer from your own data. No training, no new logins, no waiting on the one person who knows how to run the report.
 
+**Customer-facing systems that reduce your operational load**
+
+Your customers interact with your business through phone calls, emails, and PDFs. Every request requires someone on your team to process it manually. As you grow, your back office grows with it because there's no way for customers to help themselves.
+
+I build self-service portals and digital workflows that let your customers submit requests, check status, approve documents, and get answers without calling your office. I've modernized customer-facing systems at organizations serving millions of users. The result is the same every time: your team handles more volume with fewer people, and your customers get faster answers.
+
 **Standardizing how teams work**
 
 Every office, team, or department does the same process a little differently. Onboarding looks one way in one location and another way somewhere else. Templates are out of date. There's no single source of truth for how things should be done.
