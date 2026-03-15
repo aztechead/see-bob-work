@@ -53,11 +53,11 @@ You're growing but hiring decisions are gut calls. You don't know how many peopl
 
 I connect your sales pipeline to your resource pool. When a proposal moves to likely-to-close, you can see the capacity impact. You know which roles you're short on and when the gap hits. Hiring becomes a planning exercise instead of a fire drill.
 
-**Quality review automation**
+**AI agents that do real work**
 
-Deliverables go out with mistakes because review is manual and inconsistent. Someone catches the pricing error in the proposal after the client already saw it. Compliance documents get filed with missing fields. The checklist lives in someone's head and gets skipped when things are busy.
+You've heard about AI but what you've seen is chatbots and demos. Nobody has shown you what it looks like when AI actually handles a piece of your operations: reviewing documents, answering questions from your data, routing requests, or kicking off a workflow based on a trigger.
 
-I build automated review systems that check work against your standards before it reaches a client or a regulator. These run every time, on every deliverable, without needing someone to remember to do it.
+I design and build AI agent systems tailored to your business. These aren't generic tools. They're purpose-built agents that understand your processes, connect to your systems, and handle specific tasks end to end. I've built agent architectures that coordinate multiple specialized agents working together, handle multi-step conversations, and run autonomously in production.
 
 **Ask your data questions in plain English**
 
