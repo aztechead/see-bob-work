@@ -43,6 +43,15 @@ export interface SiteContent {
       description: string;
     }>;
   };
+  currentWork: {
+    title: string;
+    subtitle: string;
+    projects: Array<{
+      value: string;
+      title: string;
+      description: string;
+    }>;
+  };
   about: {
     title: string;
     description: string;
